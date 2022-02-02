@@ -1,0 +1,36 @@
+{% load static %}
+
+<div class="navigation">
+    <ul>
+        <li>
+            <a href="#">
+                <span class="icon"><img  src="/media/{{request.user.employee.photo}}"></img></span>
+                <span class="title" style="font-size: 1.5em;font-weight: 500;">{{request.user.employee}}</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{% url 'stages1cpi' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-dice-one"></i></span></span>
+                <span class="title">Stages 1CPI</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{% url 'stages1cs' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-dice-two"></i></span></span>
+                <span class="title">Stages 1CS</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{% url 'stages3cs' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-dice-three"></i></span></span>
+                <span class="title">Stages PFE</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'home' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fad fa-long-arrow-left"></i></span></span>
+                <span class="title">Retour</span>
+            </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,49 @@
+{% extends 'stagemain.html' %}
+{% load static %}
+
+
+{% block content%}
+
+<div class="main">
+    {% include 'topbar.html' %}
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Supprimer Un Stage</h2>
+    {% if who == "stage1cpi" %}      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form action="{% url 'deletestage1cpi' stage.id %}" method="POST">
+                {% csrf_token %}
+                <h4 style="margin-bottom:10px;">Voullez Vous Supprimer Le Stage 'n° {{stage.id}} {{stage.type}}' ?</h4>
+                <a href="{% url 'stages1cpi' %}" >Annuler</a>
+                <button type="submit" class="btn btn-primary" style="color:white;">Oui</button>
+            </form>
+        </div>
+    </div> 
+    {% endif %}
+    {% if who == "stage1cs" %}      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form action="{% url 'deletestage1cs' stage.id %}" method="POST">
+                {% csrf_token %}
+                <h4 style="margin-bottom:10px;">Voullez Vous Supprimer Le Stage 'n° {{stage.id}} {{stage.type}}' ?</h4>
+                <a href="{% url 'stages1cs' %}" >Annuler</a>
+                <button type="submit" class="btn btn-primary" style="color:white;">Oui</button>
+            </form>
+        </div>
+    </div> 
+    {% endif %} 
+    {% if who == "stage3cs" %}      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form action="{% url 'deletestage3cs' stage.id %}" method="POST">
+                {% csrf_token %}
+                <h4 style="margin-bottom:10px;">Voullez Vous Supprimer Le Stage 'n° {{stage.id}} {{stage.type}}' ?</h4>
+                <a href="{% url 'stages3cs' %}" >Annuler</a>
+                <button type="submit" class="btn btn-primary" style="color:white;">Oui</button>
+            </form>
+        </div>
+    </div> 
+    {% endif %}
+</div> 
+
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content%}
+
+<div class="main">
+    {% include 'topbar.html' %}
+    {% if who == "Etudiant" %}
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Supprimer Un {{who}}</h2>      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form action="{% url 'deletestudent' student.id %}" method="POST">
+                {% csrf_token %}
+                <h4 style="margin-bottom:10px;">Voullez Vous Supprimer L'Etudiant '{{student.name}} {{student.surname}}' ?</h4>
+                <a href="{% url 'students' %}" >Annuler</a>
+                <button type="submit" class="btn btn-primary" style="color:white;">Oui</button>
+            </form>
+            
+        </div>
+    </div> 
+    {% endif %} 
+    {% if who == "Encadreur" %}
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Supprimer Un {{who}}</h2>      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form action="{% url 'deleteteacher' teacher.id %}" method="POST">
+                {% csrf_token %}
+                <h4 style="margin-bottom:10px;">Voullez Vous Supprimer L'Encadreur '{{teacher.name}} {{teacher.surname}}' ?</h4>
+                <a href="{% url 'teachers' %}" >Annuler</a>
+                <button type="submit" class="btn btn-primary" style="color:white;">Oui</button>
+            </form>
+            
+        </div>
+    </div> 
+    {% endif %} 
+    {% if who == "Entreprise" %}
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Supprimer Une {{who}}</h2>      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form action="{% url 'deletecompany' company.id %}" method="POST">
+                {% csrf_token %}
+                <h4 style="margin-bottom:10px;">Voullez Vous Supprimer L'Entreprise '{{company.name}}' ?</h4>
+                <a href="{% url 'companies' %}" >Annuler</a>
+                <button type="submit" class="btn btn-primary" style="color:white;">Oui</button>
+            </form>
+            
+        </div>
+    </div> 
+    {% endif %} 
+    {% if who == "Promoteur" %}
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Supprimer Un {{who}}</h2>      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form action="{% url 'deletepromoter' promoter.id %}" method="POST">
+                {% csrf_token %}
+                <h4 style="margin-bottom:10px;">Voullez Vous Supprimer Le Promoteur '{{promoter.name}}'+'{{promoter.surname}}' ?</h4>
+                <a href="{% url 'promoters' %}" >Annuler</a>
+                <button type="submit" class="btn btn-primary" style="color:white;">Oui</button>
+            </form>
+            
+        </div>
+    </div> 
+    {% endif %}
+    {% if who == "Employee" %}
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Supprimer Un Employé</h2>      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form action="{% url 'deleteemployee' employee.id %}" method="POST">
+                {% csrf_token %}
+                <h4 style="margin-bottom:10px;">Voullez Vous Supprimer Le Promoteur '{{employee.name}} {{employee.surname}}' ?</h4>
+                <a href="{% url 'employees' %}" >Annuler</a>
+                <button type="submit" class="btn btn-primary" style="color:white;">Oui</button>
+            </form>
+            
+        </div>
+    </div> 
+    {% endif %}
+    {% if who == "Utilisateur" %}
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Supprimer Un Utilisateur</h2>      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form action="{% url 'deleteuser' user.id %}" method="POST">
+                {% csrf_token %}
+                <h4 style="margin-bottom:10px;">Voullez Vous Supprimer L'utilisateur '{{user}}' ?</h4>
+                <a href="{% url 'users' %}" >Annuler</a>
+                <button type="submit" class="btn btn-primary" style="color:white;">Oui</button>
+            </form>
+            
+        </div>
+    </div> 
+    {% endif %}
+</div> 
+
+
+{% endblock %}

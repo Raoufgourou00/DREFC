@@ -1,0 +1,72 @@
+{% load static %}
+
+<div class="navigation">
+    <ul>
+        <li>
+            <a href="{% url 'changephoto' request.user.employee.id 1 %}">
+                <span class="icon"><img  src="/media/{{request.user.employee.photo}}"></img></span>
+                <span class="title" style="font-size: 1.5em;font-weight: 500;">{{request.user.employee.name}}</span>
+            </a>
+        </li>
+        <li class="{{hovered1}}">
+            <a href="{% url 'home' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-home"></i></span></span>
+                <span class="title">Accueil</span>
+            </a>
+        </li>
+        <li class="{{hovered2}}">
+            <a href="{% url 'students' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-user-graduate"></i></span></span>
+                <span class="title">Etudiants</span>
+            </a>
+        </li>
+        <li class="{{hovered3}}">
+            <a href="{% url 'teachers' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-chalkboard-teacher"></i></span></span>
+                <span class="title">Encadreurs</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{% url 'stages1cpi' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fad fa-users-class"></i></span></span>
+                <span class="title">Stages</span>
+            </a>
+        </li>
+        <li class="{{hovered5}}">
+            <a href="{% url 'companies' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-building"></i></span></span>
+                <span class="title">Entreprise</span>
+            </a>
+        </li>
+        <li class="{{hovered6}}">
+            <a href="{% url 'promoters' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-person-carry"></i></span></span>
+                <span class="title">Promoteurs</span>
+            </a>
+        </li>
+        <li class="{{hovered8}}">
+            <a href="{% url 'employees' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-people-carry"></i></span></span>
+                <span class="title">Employés</span>
+            </a>
+        </li>
+        <li class="{{hovered7}}">
+            <a href="{% url 'users' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-users"></i></span></span>
+                <span class="title">Utilisatuers</span>
+            </a>
+        </li>
+        <li class="#">
+            <a href="{% url 'passwordemp' request.user.id %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-key"></i></span></span>
+                <span class="title">Password</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'logout' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-sign-out-alt"></i></span></span>
+                <span class="title">Exit</span>
+            </a>
+        </li>
+    </ul>
+</div>

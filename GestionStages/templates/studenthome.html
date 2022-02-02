@@ -1,0 +1,92 @@
+{% extends 'studentmain.html' %}
+{% load static %}
+
+
+{% block content%}
+
+<div class="main">
+    {% include 'topbar.html' %}           
+    <h1 style="color: #287bff; margin-left:25px; margin-top:10px">Bienvenue {{request.user.student.name}} !!</h1>      
+    <div class="studenthome">
+        <div  class="cartestudent">
+            <ul>
+                <li>Nom : {{request.user.student.name}}</li>
+                <li>Prènom : {{request.user.student.surname}}</li>
+                <li>E-mail :  {{request.user.student.email}}</li>
+                <li>Niveau Collège :  {{request.user.student.collegelevel}}</li>
+                <li>Matricule :  {{request.user.student.matricule}}</li>
+            </ul>
+        </div>
+        <div  class="photostudent">
+            <img  src="/media/{{request.user.student.photo}}"></img>
+        </div>
+    </div>
+      
+    <div class="studentspage"> 
+        <div class="students">
+            <h2 style="color: #287bff; margin-left:25px;">Stage En Cours</h2> 
+            <table>
+                <thead>
+                    <tr>
+                        <td>Code Stage</td>
+                        <td>Type</td>
+                        <td>Titre</td>
+                        <td>Date Debut</td>
+                        <td>Date Fin</td>
+                        <td>Convention De Stage</td>
+                        <td>Rapport</td>
+                        {% if request.user.student.collegelevel == '1CS' %}
+                        <td>Fiche d'evaluation</td>
+                        <td>Encadreur</td>
+                        {% elif  request.user.student.collegelevel == '3CS' %}
+                        <td>Fiche 1</td>
+                        <td>Fiche 2</td>
+                        <td>Fiche 3</td>
+                        <td>Encadreur</td>
+                        {% endif %}
+                        <td>Promoteur</td>
+                        <td>Entreprise</td>
+                        <td>Etat</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stage in stages %}
+                        {% for student in stage.students.all  %}
+                            {% if student.id == request.user.student.id   and stage.type == request.user.student.collegelevel and stage.status == 'En Cours'  %}
+                    <tr>
+                        <td>{{stage.id}}</td>
+                        <td>{{stage.type}}</td>
+                        <td>{{stage.titre}}</td>
+                        <td>{{stage.datedeb}}</td>
+                        <td>{{stage.datefin}}</td>
+                        <td><a href="{% url 'pdf_view' stage.id  0 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td><a href="{% url 'pdf_view' stage.id  1 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        {% if request.user.student.collegelevel == '1CS' %}
+                        <td><a href="{% url 'pdf_view' stage.id  2 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td>{{stage.teacher}}</td>
+                        {% elif  request.user.student.collegelevel == '3CS' %}
+                        <td><a href="{% url 'pdf_view' stage.id  2 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td><a href="{% url 'pdf_view' stage.id  3 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td><a href="{% url 'pdf_view' stage.id  4 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td>{{stage.teacher}}</td>
+                        {% endif %}
+                        <td>{{stage.promoter}}</td>
+                        <td>{{stage.company}}</td>
+                        <td>{{stage.status}}</td>
+                        <td>
+                            <a href="{% url 'validstage' stage.id %}"><i class="fas fa-edit" style="color:gris;"></i></a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a style="margin-left:25px;" href="{% url 'render_pdf_view' request.user.username %}">Télécharger La Convention De Stage</a>
+</div> 
+
+
+{% endblock %}

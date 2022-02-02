@@ -1,0 +1,86 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content%}
+
+<div class="main">
+    {% include 'topbar.html' %}           
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Etudiants</h2>      
+    <div class="studentspage">
+        <div class="students">
+            <form method="GET">
+                <div class="filterdiv">
+                    <div class="form-group">
+                        <label for="exampleInputSurname">Nom</label>
+                        {{MyFilter.form.surname}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName">Prènom</label>
+                        {{MyFilter.form.name}}
+                    </div>  
+                    <div class="form-group">
+                        <label for="exampleInputMatricule">Matricule</label>
+                        {{MyFilter.form.matricule}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleSelectCollegelevel">Niveau</label>
+                        {{MyFilter.form.collegelevel}}
+                    </div>
+                    <div class="form-group1">
+                        <button type="submit" class="btn btn-primary">Chercher</button>
+                    </div> 
+                </div>
+            </form>    
+            
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nom</td>
+                        <td>Prénom</td>
+                        <td>Matricule</td>
+                        <td>Date De Naissance</td>
+                        <td>Lieu De Naissance</td>
+                        <td>Niveau Collège</td>
+                        <td>Téléphone</td>
+                        <td>Email</td>
+                        <td>Username</td>
+                        <td>Photo</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in students %}
+                    <tr>
+                        <td>{{item.surname}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.matricule}}</td>
+                        <td>{{item.datebirth}}</td>
+                        <td>{{item.placebirth}}</td>
+                        <td>{{item.collegelevel}}</td>
+                        <td>{{item.phone}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.user}}</td>
+                        <td><img style="width: 40px;height: 40px;object-fit: cover;"src="/media/{{item.photo}}"></img></td>    
+                        <td>
+                            <a href="{% url 'updatestudent' item.id %}"><i class="fas fa-edit" style="color:gris;"></i></a>
+                            <a class="text-danger" href="{% url 'deletestudent' item.id %}" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="studentsfooter">
+        <div class="records">         
+                <div class="cardHeader">
+                    <h4>{{count_students}} élément(s) trouvé(s)</h4> 
+                    <a href="{% url 'createstudent' %}" class="btn">Ajouter</a>
+                </div>
+        </div>
+    </div>  
+</div> 
+
+
+{% endblock %}

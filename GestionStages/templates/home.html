@@ -1,0 +1,124 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content%}
+            <div class="main">
+                {% include 'topbar.html' %}
+                <h1 style="color: #287bff; margin-left:25px; margin-top:10px">Bienvenue {{request.user.employee.name}} !!</h1>      
+                <div class="studenthome">
+                    <div  class="cartestudent" style="height: 200px;">
+                        <ul>
+                            <li>Nom : {{request.user.employee.name}}</li>
+                            <li>Prènom : {{request.user.employee.surname}}</li>
+                            <li>E-mail :  {{request.user.employee.email}}</li>
+                            <li>Code :  {{request.user.employee.id}}</li>
+                        </ul>
+                    </div>
+                    <div  class="photostudent" style="height: 200px;">
+                        <img  src="/media/{{request.user.employee.photo}}"></img>
+                    </div>
+                </div>
+                <div class="cardBox">
+                    <div class="card">
+                        <div>
+                            <div class="numbers">1,504</div>
+                            <div class="cardName">Visiteurs</div>
+                        </div>
+                        <div class="iconBx">
+                            <ion-icon name="eye-outline"></ion-icon>         
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">{{count_all_students}}</div>
+                            <div class="cardName">Etudiants</div>
+                        </div>
+                        <div class="iconBx">
+                            <ion-icon name="school-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">{{count_all_companies}}</div>
+                            <div class="cardName">Entreprises</div>
+                        </div>
+                        <div class="iconBx">
+                            <ion-icon name="business-outline"></ion-icon>     
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">{{count_all_stages}}</div>
+                            <div class="cardName">Stages</div>
+                        </div>
+                        <div class="iconBx">
+                            <ion-icon name="documents-outline"></ion-icon> 
+                        </div>
+                    </div>
+                </div> 
+
+                <!-- Add Chart -->
+                <div class="graphBox"  style="position: relative;width: 100%;padding: 20px;display: grid;grid-template-columns: 1fr 2fr;grid-gap: 30px;min-height: 200px;" >
+                    <div calss="box"  style="position: relative;background: #fff;width: 100%;padding: 20px;box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08); border-radius: 20px;" >
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div calss="box"  style="position: relative;background: #fff;width: 100%;padding: 20px;box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08); border-radius: 20px;" >
+                        <canvas id="earning"></canvas>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="recentOrders">
+                        <div class="cardHeader">
+                            <h2>Stages Récents</h2>
+                            <a href="{% url 'stages1cpi' %}" class="btn">Voir Tous</a>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Code</td>
+                                    <td>Titre</td>
+                                    <td>Type</td>
+                                    <td>Entreprise</td>
+                                    <td>Promoteur</td>
+                                    <td>Etat</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in stages %}
+                                <tr>
+                                    <td>{{item.id}}</td>
+                                    <td>{{item.titre}}</td>
+                                    <td>{{item.type}}</td>
+                                    <td>{{item.company}}</td>
+                                    <td>{{item.promoter}}</td>
+                                    <td><span class="{{item.status}}">{{item.status}}</span></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--New Customers-->
+                    <div class="recentCustomers">
+                        <div class="cardHeader">
+                            <h2>Etudiants Récents</h2>
+                        </div>
+                        <table>
+                            {% for item in students %}
+                            <tr>
+                                <td width="60px"><div class="imgBx"><img src="/media/{{item.photo}}"></div></td>
+                                <td><h4>{{item.name}}<br><span>{{item.surname}}</span></h4></td>
+                            <tr> 
+                            {% endfor %}   
+                        </table>
+                    </div>
+                </div>   
+            </div> 
+            
+           
+        
+        }
+{% endblock %}
+        
+        

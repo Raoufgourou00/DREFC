@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <meta name="description" content="">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/style.css/' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    </head>
+    <body>
+        <div class="container">
+            {% include 'teachermenu.html' %} 
+            {% block content%}
+         
+
+            {% endblock %}
+        </div>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script>
+           
+            
+            
+            // add hovered class in selected list item
+            let list = document.querySelectorAll('.navigation li');
+            function activeLink(){
+                list.forEach((item) =>
+                item.classList.remove('hovered'));
+                this.classList.add('hovered');
+            }
+            list.forEach((item) => 
+            item.addEventListener('mouseover',activeLink));
+
+            /*shortcut calendar*/
+            config ={
+                dateFormat:"Y-m-d",
+            }
+
+            flatpickr("#exampleInputDatebirth", {})
+
+
+
+
+
+        
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content%}
+
+<div class="main">
+    {% include 'topbar.html' %} 
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Ajouter Une Entreprise</h2>      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="fields">
+                    <div class="form-group">
+                        <label for="exampleInputName">Nom</label>
+                        {{form.name}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleSelectLegalstatus">Forme Juridique</label>
+                        {{form.legalstatus}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputAddress">Adresse</label>
+                        {{form.address}}
+                    </div>  
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">E-mail</label>
+                        {{form.email}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPhone">Téléphone</label>
+                        {{form.phone}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFax">Fax</label>
+                        {{form.fax}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputWebsite">Site-Web</label>
+                        {{form.website}}
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="color:white;">Valider</button>
+                    <a href="{% url 'companies' %}" class="btn">Annuler</a>
+               </div> 
+            </form>
+            
+        </div>
+    </div> 
+</div> 
+
+
+{% endblock %}

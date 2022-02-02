@@ -1,0 +1,78 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content%}
+
+<div class="main">
+    {% include 'topbar.html' %}           
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Promoteurs</h2>      
+    <div class="studentspage">
+        <div class="students">
+            <form method="GET">
+                <div class="filterdiv">
+                    <div class="form-group">
+                        <label for="exampleInputId">Code</label>
+                        {{MyFilter.form.id}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputSurname">Nom</label>
+                        {{MyFilter.form.surname}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName">Prènom</label>
+                        {{MyFilter.form.name}}
+                    </div>  
+                    <div class="form-group">
+                        <label for="exampleSelectCompany">Entrep</label>
+                        {{MyFilter.form.company}}
+                    </div>
+                    <div class="form-group1">
+                        <button type="submit" class="btn btn-primary">Chercher</button>
+                    </div> 
+                </div>
+            </form>    
+            
+            <table>
+                <thead>
+                    <tr>
+                        <td>Code</td>
+                        <td>Nom</td>
+                        <td>Prénom</td>
+                        <td>Téléphone</td>
+                        <td>Email</td>
+                        <td>Entreprise</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in promoters %}
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.surname}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.phone}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.company}}</td>
+                        <td>
+                            <a href="{% url 'updatepromoter' item.id %}"><i class="fas fa-edit" style="color:gris;"></i></a>
+                            <a class="text-danger" href="{% url 'deletepromoter' item.id %}" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="studentsfooter">
+        <div class="records">         
+                <div class="cardHeader">
+                    <h4>{{count_promoters}} élément(s) trouvé(s)</h4> 
+                    <a href="{% url 'createpromoter' %}" class="btn">Ajouter</a>
+                </div>
+        </div>
+    </div>  
+</div> 
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% load static %}
+
+<div class="navigation">
+    <ul>
+        <li>
+            <a href="{% url 'changephoto' request.user.student.id 2 %}">
+                <span class="icon"><img  src="/media/{{request.user.student.photo}}"></img></span>
+                <span class="title" style="font-size: 1.5em;font-weight: 500;">{{request.user.student.name}}</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{% url 'studenthome' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-home"></i></span></span>
+                <span class="title">Accueil</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{% url 'vosstages' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-copy"></i></span></span>
+                <span class="title">Vos Stages</span>
+            </a>
+        </li>
+        <li class="#">
+            <a href="{% url 'password' request.user.id %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-key"></i></span></span>
+                <span class="title">Password</span>
+            </a>
+        </li>
+        <li class="#">
+            <a href="{% url 'logout' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-sign-out-alt"></i></span></span>
+                <span class="title">Exit</span>
+            </a>
+        </li>
+    </ul>
+</div>

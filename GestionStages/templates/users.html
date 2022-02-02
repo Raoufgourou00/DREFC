@@ -1,0 +1,92 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content%}
+
+<div class="main">
+    {% include 'topbar.html' %}           
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Utilisateurs</h2>      
+    <div class="studentspage">
+        <div class="students">
+            <form method="GET">
+                <div class="filterdiv">
+                    <div class="form-group">
+                        <label for="exampleInputUsername">Username</label>
+                        {{MyFilter.form.username}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail">Email</label>
+                        {{MyFilter.form.email}}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleSelectGroups">Rôle</label>
+                        <select name="groups" id="id_groups">
+                            <option value="" selected="">--------</option>
+                            {% for item in groups %}
+                            {% if item.name == 'admin' %}
+                            <option value="{{item.id}}" selected="">Administrateur</option>
+                            {% elif item.name == 'student' %}
+                            <option value="{{item.id}}" selected="">Etudiant</option>
+                            {% else %}
+                            <option value="{{item.id}}" selected="">Encadreur</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group1">
+                        <button type="submit" class="btn btn-primary">Chercher</button>
+                    </div> 
+                </div>
+            </form>    
+            
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nom Complet</td>
+                        <td>Rôle</td>
+                        <td>Username</td>
+                        <td>Email</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in users %}
+                    <tr>
+                        
+                        {% if item.groups.all.0.name == 'admin' %}
+                        <td>{{item.employee.name}} {{item.employee.surname}}</td>
+                        <td>Administrateur</td>
+                        {% elif item.groups.all.0.name == 'student' %}
+                        <td>{{item.student.name}} {{item.student.surname}}</td>
+                        <td>Etudiant</td>
+                        {% elif item.groups.all.0.name == 'teacher' %}
+                        <td>{{item.teacher.name}} {{item.teacher.surname}}</td>
+                        <td>Encadreur</td>
+                        {% else %}
+                        <td>/</td>
+                        <td>/</td>
+                        {% endif %}
+                        <td>{{item.get_username}}</td>
+                        <td>{{item.email}}</td>
+                        <td>
+                            <a href="{% url 'updateuser' item.id %}"><i class="fas fa-edit" style="color:gris;"></i></a>
+                            <a class="text-danger" href="{% url 'deleteuser' item.id %}" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="studentsfooter">
+        <div class="records">         
+                <div class="cardHeader">
+                    <h4>{{count_users}} élément(s) trouvé(s)</h4> 
+                    <a href="{% url 'createuser' %}" class="btn">Ajouter</a>
+                </div>
+        </div>
+    </div>  
+</div> 
+
+
+{% endblock %}

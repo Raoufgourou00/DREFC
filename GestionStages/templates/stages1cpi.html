@@ -1,0 +1,99 @@
+{% extends 'stagemain.html' %}
+{% load static %}
+
+
+{% block content%}
+
+<div class="main">
+    {% include 'topbar.html' %}           
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Cycle Préparatoire Intégré (1CPI)</h2>      
+    <div class="studentspage">
+        <div class="students">
+            <form method="GET">
+                <div class="filterdiv">
+                    <div class="form-group">
+                        <input type="number" name="id" step="any" id="id_id" placeholder="Code">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="titre" id="id_titre" placeholder="Titre">
+                    </div>
+                    <div class="form-group">
+                        <select name="company" id="id_company">
+                            <option value="" selected="">Entreprise</option>
+                            {% for item in companies %}
+                            <option value="{{item.id}}">{{item}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="promoter" id="id_promoter">
+                            <option value="" selected="">Promoteur</option>
+                            {% for item in promoters %}
+                            <option value="{{item.id}}">{{item}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="status" id="id_status">
+                            <option value="" selected="">Etat</option>
+                            <option value="En Cours">En Cours</option>
+                            <option value="Annulé">Annulé</option>
+                             <option value="Validé">Validé</option>
+                             <option value="Délai Non Respecté">Délai Non Respecté</option>
+                        </select>
+                    </div>
+                    <div class="form-group1">
+                        <button type="submit" class="btn btn-primary">Chercher</button>
+                    </div> 
+                </div>
+            </form>    
+            
+            <table>
+                <thead>
+                    <tr>
+                        <td>Code</td>
+                        <td>Titre</td>
+                        <td>Date Debut</td>
+                        <td>Date Fin</td>
+                        <td>Convention De Stage</td>
+                        <td>Rapport</td>
+                        <td>Promoteur</td>
+                        <td>Entreprise</td>
+                        <td>Etat</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in stages1cpi %}
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.titre}}</td>
+                        <td>{{item.datedeb}}</td>
+                        <td>{{item.datefin}}</td>
+                        <td><a href="{% url 'pdf_view' item.id  0 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td><a href="{% url 'pdf_view' item.id  1 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td>{{item.promoter}}</td>
+                        <td>{{item.company}}</td>
+                        <td>{{item.status}}</td>
+                        <td>
+                            <a href="{% url 'updatestage1cpi' item.id %}"><i class="fas fa-edit" style="color:gris;"></i></a>
+                            <a class="text-danger" href="{% url 'deletestage1cpi' item.id %}" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="studentsfooter">
+        <div class="records">         
+                <div class="cardHeader">
+                    <h4>{{count_stages1cpi}} élément(s) trouvé(s)</h4> 
+                    <a href="{% url 'createstage1cpi' %}" class="btn">Ajouter</a>
+                </div>
+        </div>
+    </div>  
+</div> 
+
+
+{% endblock %}

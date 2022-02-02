@@ -1,0 +1,78 @@
+{% extends 'teachermain.html' %}
+{% load static %}
+
+
+{% block content%}
+
+<div class="main">
+    {% include 'topbar.html' %}           
+    <h1 style="color: #287bff; margin-left:25px; margin-top:10px">Bienvenue {{request.user.teacher.name}} !!</h1>      
+    <div class="studenthome">
+        <div style="height:190px"  class="cartestudent">
+            <ul>
+                <li>Nom : {{request.user.teacher.name}}</li>
+                <li>Prènom : {{request.user.teacher.surname}}</li>
+                <li>E-mail :  {{request.user.teacher.email}}</li>
+                <li>Code :  {{request.user.teacher.id}}</li>
+            </ul>
+        </div>
+        <div  class="photostudent">
+            <img  src="/media/{{request.user.teacher.photo}}"></img>
+        </div>
+    </div>
+      
+    <div class="studentspage"> 
+        <div    class="students">
+            <h2 style="color: #287bff; margin-left:25px;">Encadrement PFE En Cours</h2>   
+            <table>
+                <thead>
+                    <tr>
+                        <td>Code Stage</td>
+                        <td>Titre</td>
+                        <td>Etudiants</td>
+                        <td>Date Debut</td>
+                        <td>Date Fin</td>
+                        <td>Convention De Stage</td>
+                        <td>Rapport</td>
+                        <td>Fiche 1</td>
+                        <td>Fiche 2</td>
+                        <td>Fiche 3</td>
+                        <td>Promoteur</td>
+                        <td>Entreprise</td>
+                        <td>Etat</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stage in stages %}
+                            {% if stage.teacher.id == request.user.teacher.id   and stage.type == '3CS' and stage.status == 'En Cours'  %}
+                    <tr>
+                        <td>{{stage.id}}</td>
+                        <td>{{stage.titre}}</td>
+                        <td>
+                        {% for student in stage.students.all  %} {{student.name}}  {{student.surname}} </br> {% endfor %}
+                        </td>
+                        <td>{{stage.datedeb}}</td>
+                        <td>{{stage.datefin}}</td>
+                        <td><a href="{% url 'pdf_view' stage.id  0 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td><a href="{% url 'pdf_view' stage.id  1 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td><a href="{% url 'pdf_view' stage.id  2 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td><a href="{% url 'pdf_view' stage.id  3 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td><a href="{% url 'pdf_view' stage.id  4 %}"><i class="fas fa-file-pdf"></i></a></td>
+                        <td>{{stage.promoter}}</td>
+                        <td>{{stage.company}}</td>
+                        <td>{{stage.status}}</td>
+                        <td>
+                            <a href="{% url 'validencadrement' stage.id %}"><i class="fas fa-edit" style="color:gris;"></i></a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> 
+
+
+{% endblock %}

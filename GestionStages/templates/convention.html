@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Charte_Stage_impregnation_1CPI</title>
+        <style type="text/css">
+            .container {
+                position: relative;
+                text-align: center;
+            }
+            hr{
+                position:absolute;
+                top:50px
+            }
+            .container img{
+                width:100%;
+            
+            }
+            .title{
+                position: absolute;
+                top: 20px;
+            }
+            .title p{
+                font-size:20px;
+                text-align: center;
+                color:black;
+                font-family:srif;
+            }
+            .body p{
+                font-size:12px;
+                text-align: left;
+                color:black;
+                font-family:srif;
+            }
+            .body ol li{
+                font-size:12px;
+                text-align: left;
+                color:black;
+                font-family:srif;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div class="container">
+            <hr>
+            <div class="title"><p>Charte du Stage d'Imprégnation (Découverte de l'Entreprise)</p></div>
+            <div class="body">
+                <p>La présente charte règle les rapports entre : </p>
+                <p>
+                a) L'Ecole nationale Supérieure d'Informatique (E.S.I.) ayant son siège à BP 68 M, Oued-Smar, Alger 
+                </p>
+                <p>
+                b) L'Organisme de stage : 
+                </p>
+                <p>
+                Adresse 
+                </p> 
+                <p>
+                Représenté par 
+                </p> 
+                <p>
+                Tel/Fax :                                    
+                </p>
+                <p>
+                Email :
+                </p>
+                <p>
+                c) L'Etudiant régulièrement inscrit en 1ère année CPI à l'E.S.I. pour l'année universitaire {% now "Y" %} 
+                </p>
+                <p>
+                Matricule : {{user.student.matricule}}
+                </p>
+                <p> 
+                Nom :  {{user.student.name}}   Prénom(s) :   {{user.student.surname}}
+                </p>
+                <p>
+                Il est convenu ce qui suit : </p>
+                <ol>
+                    <li>Le présent stage n'est pas rémunéré par l'École. L'organisme d'accueil pourra délivrer une attestation de 
+                        stage à l'issue du stage pratique. </li>
+                        <li>La durée du stage est de
+                        {% if user.student.collegelevel == '1CPI' %}   
+                            2 semaines à raison de 20 heures maximum par semaine. 
+                        {% elif user.student.collegelevel == '1CS' %}
+                            6 semaines à 8 semaines max. 
+                        {% else %}
+                            6 mois à 8 mois max. 
+                        {% endif %}
+                        </li>
+                        <li>Lieu de déroulement du stage : .................   </li>
+                        <li>Pendant la durée du stage, le stagiaire demeure étudiant de l'ESI</li>
+                        <li>L'organisme d'accueil veille à affecter une personne qualifiée pour aider l'étudiant stagiaire à apprendre 
+                            par la réalisation de tâches confiées dans le cadre des activités quotidiennes.</li>
+                        <li> Pendant le stage d'imprégnation, l'étudiant est admis aux obligations de l'ensemble du personnel de 
+                            l'Organisme d'accueil telles que définies dans son règlement intérieur et dont il devra prendre connaissance 
+                            dès son arrivée sur le lieu du stage. </li>
+                        <li> Le stage donne lieu à la rédaction d'un rapport 
+                        {% if user.student.collegelevel == '1CPI' %}   
+                        (6 pages maximum)
+                        {% elif user.student.collegelevel == '1CS' %}
+                        (20 pages).
+                        {% else %}
+                        120 Pages maximum.
+                        {% endif %}  décrivant l'organisme ou structure 
+                            d'accueil et un résumé des actions effectuées. Il sera remis à au service des stages de l'E.S.I. dès le retour de 
+                            stage.</li>
+                        <li>Pendant le stage, les frais d'assurance sociale sont couverts par l'E.S.</li>
+                </ol>
+            
+                <p> 
+                    Sigature P/ l'E.S.I.  :  
+                </p>
+                <p> 
+                    Sigature P/ l'Organisme d'Accueil  :  
+                </p> 
+            
+            
+            </div>
+        </div>
+    </body>
+</html>

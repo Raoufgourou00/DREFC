@@ -1,0 +1,36 @@
+{% load static %}
+
+<div class="navigation">
+    <ul>
+        <li>
+            <a href="{% url 'changephoto' request.user.teacher.id 3 %}">
+                <span class="icon"><img  src="/media/{{request.user.teacher.photo}}"></img></span>
+                <span class="title" style="font-size: 1.5em;font-weight: 500;">{{request.user.teacher.name}}</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{% url 'teacherhome' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-home"></i></span></span>
+                <span class="title">Accueil</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{% url 'teacherencadrements' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-copy"></i></span></span>
+                <span class="title">Vos Encadrements</span>
+            </a>
+        </li>
+        <li class="#">
+            <a href="{% url 'passwordtea' request.user.id %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-key"></i></span></span>
+                <span class="title">Password</span>
+            </a>
+        </li>
+        <li class="#">
+            <a href="{% url 'logout' %}">
+                <span class="icon"><span style="font-size: 1.75em;"><i class="fal fa-sign-out-alt"></i></span></span>
+                <span class="title">Exit</span>
+            </a>
+        </li>
+    </ul>
+</div>

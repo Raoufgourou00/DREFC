@@ -1,0 +1,7 @@
+unDraw
+ionicons
+randomuser
+flatpickr
+
+pip install --pre xhtml2pdf  : for render_to_pdf
+python3 -m pip install PyPDF2

@@ -1,0 +1,65 @@
+{% extends 'studentmain.html' %}
+{% load static %}
+
+{% block content%}
+
+<div class="main">
+    {% include 'topbar.html' %} 
+    <h2 style="color: #287bff; margin-left:25px; margin-top:10px">Vous Voulez Changer Votre Photo De Profile ?</h2>      
+    <div class="studentsformpage">
+        <div class="studentsform"> 
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="fields">
+                    <div style="display:none;" class="form-group">
+                        <label for="exampleInputSurname">Nom</label>
+                        {{form.surname}}
+                    </div>
+                    <div  style="display:none;" class="form-group">
+                        <label for="exampleInputName">Prènom</label>
+                        {{form.name}}
+                    </div> 
+                    <div  style="display:none;" class="form-group">
+                        <label for="exampleInputEmail1">E-mail</label>
+                        {{form.email}}
+                    </div>
+                    <div  style="display:none;" class="form-group">
+                        <label for="exampleInputPhone">Téléphone</label>
+                        {{form.phone}}
+                    </div>
+                    <div  style="display:none;" class="form-group">
+                        <label for="exampleSelectUsername">User</label>
+                        {{form.user}}
+                    </div>
+                    <div style="display:none;" class="form-group">
+                        <label for="exampleInputMatricule">Matricule</label>
+                        {{form.matricule}}
+                    </div> 
+                    <div style="display:none;" class="form-group">
+                        <label for="exampleInputDatebirth">Date De Naissance</label>
+                        {{form.datebirth}}
+                        <ion-icon name="calendar-outline"></ion-icon>
+                    </div>
+                    <div style="display:none;" class="form-group">
+                        <label for="exampleInputPlacebirth">Lieu De Naissance</label>
+                        {{form.placebirth}}
+                    </div> 
+                    <div style="display:none;" class="form-group">
+                        <label for="exampleSelectCollegelevel">Niveau Collège</label>
+                        {{form.collegelevel}}
+                    </div>
+                    <div  class="form-group1">
+                        <label for="exampleFormControlFile1">Photo</label>
+                        {{form.photo}}
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="color:white;">Valider</button>
+                    <a href="{% url 'studenthome' %}" class="btn">Annuler</a>
+               </div> 
+            </form>
+            
+        </div>
+    </div> 
+</div> 
+
+
+{% endblock %}
